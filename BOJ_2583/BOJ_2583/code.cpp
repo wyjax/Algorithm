@@ -38,31 +38,7 @@ void BFS(int x, int y) {
 }
 
 int main() {
-	cin >> m >> n >> k;
-
-	while (k-- > 0) {
-		int x1, y1, x2, y2;
-		cin >> x1 >> y1 >> x2 >> y2;
-
-		for (int i = y1; i < y2; i++) {
-			for (int j = x1; j < x2; j++) {
-				maps[i][j] = 1;
-			}
-		}
-	}
-
-	for (int i = 0; i < m; i++) {
-		for (int j = 0; j < n; j++) {
-			if (maps[i][j] == 0) {
-				BFS(j, i);
-			}
-		}
-	}
-
-	cout << cnt << "\n";
-	sort(v.begin(), v.end());
-	for (int num : v)
-		cout << num << " ";
+	
 
 	return 0;
 }
