@@ -34,7 +34,8 @@ public class Main {
 		System.out.println(list.size());
 		
 		for(String s : list)
-			bw.write(s + "\n");
+			System.out.println(s);
+			//bw.write(s + "\n");
 		
 		br.close();
 		bw.close();
