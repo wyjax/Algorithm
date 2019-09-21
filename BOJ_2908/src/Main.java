@@ -27,5 +27,6 @@ public class Main {
 		n2 = Integer.parseInt(tmp);
 		
 		System.out.println(n1 < n2 ? n2 : n1);
+		
 	}
 }
