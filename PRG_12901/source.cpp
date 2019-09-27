@@ -1,28 +1,21 @@
-#include <iostream>
 #include <string>
+#include <algorithm>
 #include <vector>
 
 using namespace std;
 
-string solution(int a, int b) {
-	string answer = "";
-	int month[] = { 31, 29, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31 };
-	string dayday[] = { "THU", "FRI", "SAT", "SUN", "MON", "TUE", "WED" };
-	int days = 0;
+vector<int> solution(vector<int> arr, int divisor) {
+	vector<int> answer;
 
-	for (int i = 0; i < a - 1; i++) {
-		days += month[i];
+	for (int i = 0; i < arr.size(); i++) {
+		if (arr[i] % divisor == 0)
+			answer.push_back(arr[i]);
 	}
-	days += b;
-	days %= 7;
 
-	answer = dayday[days];
+	sort(answer.begin(), answer.end());
+
+	if (answer.size() == 0)
+		answer.push_back(-1);
 
 	return answer;
-}
-
-int main() {
-	cout << solution(6, 24);
-
-	return 0;
 }
