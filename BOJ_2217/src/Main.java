@@ -9,7 +9,7 @@ public class Main {
         int arr[] = new int[tc];
 
         /*
-            인덱스 0부터 tc까지 값 중에서 최대로 버틸수 있는 무게 중 최대값을 구하면 된다.
+            인덱스 0부터 tc까지 값 중에서 최대로 버틸수 있는 무게 중 최대값을 구하면 된다.ㅇ
          */
 
         for(int i = 0; i < tc; i++) {
@@ -24,6 +24,7 @@ public class Main {
             if (max < val)
                 max = val;
         }
+
 
         System.out.println(max);
     }
