@@ -55,7 +55,7 @@ class Solution {
 
             if (nx < 0 || nx >= n || ny < 0 || ny >= n || maps[nx][ny] == 1)
                 continue;
-            if (i == 2 && (maps[nx - 1][ny] == 1 || maps[nx][ny - 1] == 1))
+            if (i == 2 && (maps[nx - 1][ny] == 1 || maps[nx][ny - 1] == 1)
                 continue;
 
             solve(nx, ny, i);
