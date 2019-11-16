@@ -1,4 +1,6 @@
 import java.io.BufferedReader;
+import java.util.LinkedList;
+import java.util.Queue;
 import java.util.Scanner;
 
 public class Main {
@@ -15,7 +17,7 @@ class Solution {
     public void solution() {
         Scanner sc = new Scanner(System.in);
         n = sc.nextInt();
-        pan = new int[n][n];
+        pan = new int[n + 1][n + 1];
 
         for (int i = 0; i < n; i++) {
             for (int j = 0; j < n; j++) {
@@ -28,96 +30,137 @@ class Solution {
     }
 
     public void solve(int cnt) {
-        if (cnt == 5) {
-            for (int i = 0; i < n; i++) {
-                for (int j = 0; j < n; j++) {
-                    if (max < pan[i][j])
-                        max = pan[i][j];
+        for (int i = 0; i < n; i++) {
+            for (int j = 0; j < n; j++) {
+                if (max < pan[i][j]) {
+                    max = pan[i][j];
                 }
             }
-            return;
         }
 
-        int [][]board = pan;
+        if (cnt == 5) return;
 
-        for (int i = 1; i < 5; i++) {
+        int[][] board = new int[n + 1][n + 1];
+
+        for (int i = 0; i < n; i++)
+            for (int j = 0; j < n; j++)
+                board[i][j] = pan[i][j];
+
+        for (int i = 0; i < 4; i++) {
             moving(i);
             solve(cnt + 1);
-            pan = board;
+
+            for (int j = 0; j < n; j++)
+                for (int k = 0; k < n; k++)
+                    pan[j][k] = board[j][k];
         }
     }
 
     public void moving(int direct) {
-        if (direct == 1) {
+        Queue<Integer> q = new LinkedList<>();
+
+        // 왼
+        if (direct == 0) {
             for (int i = 0; i < n; i++) {
-                for (int j = 0; j < n - 1; j++) {
-                    if (pan[i][j] == pan[i][j + 1]) {
-                        pan[i][j] += pan[i][j + 1];
-                        pan[i][j + 1] = 0;
-                        j++;
+                for (int j = 0; j < n; j++) {
+                    if (pan[i][j] == 0) continue;
+
+                    for (int k = j + 1; k < n; k++) {
+                        if (pan[i][k] == 0) continue;
+                        if (pan[i][j] != pan[i][k]) break;
+                        if (pan[i][j] == pan[i][k]) {
+                            pan[i][j] *= 2;
+                            pan[i][k] = 0;
+                            j = k;
+                            break;
+                        }
                     }
                 }
-
-                for (int j = 0; j < n - 1; j++) {
-                    if (pan[i][j] == 0) {
-                        pan[i][j] = pan[i][j + 1];
-                        pan[i][j + 1] = 0;
+                for (int j = 0; j < n; j++) {
+                    if (pan[i][j] == 0) continue;
+                    q.add(pan[i][j]);
+                    pan[i][j] = 0;
+                }
+                int size = q.size();
+                for (int j = 0; j < size; j++)
+                    pan[i][j] = q.poll();
+            }
+        }
+        // 우
+        else if (direct == 1) {
+            for (int i = 0; i < n; i++) {
+                for (int j = n - 1; j >= 0; j--) {
+                    if (pan[j][i] == 0) continue;
+                    for (int k = j - 1; k >= 0; k--) {
+                        if (pan[k][i] == 0) continue;
+                        if (pan[j][i] != pan[k][i]) break;
+                        if (pan[j][i] == pan[k][i]) {
+                            pan[j][i] *= 2;
+                            pan[k][i] = 0;
+                            j = k;
+                            break;
+                        }
                     }
+                }
+                for (int j = n - 1; j >= 0; j--) {
+                    if (pan[j][i] == 0) continue;
+                    q.add(pan[j][i]);
+                    pan[j][i] = 0;
+                }
+                int size = q.size();
+                for (int j = 0; j < size; j++) {
+                    pan[n - 1 - j][i] = q.poll();
                 }
             }
         }
+        // 좌
         else if (direct == 2) {
             for (int i = 0; i < n; i++) {
-                for (int j = n - 1; j > 0; j--) {
-                    if (pan[i][j] == pan[i][j - 1]) {
-                        pan[i][j] += pan[i][j - 1];
-                        pan[i][j - 1] = 0;
-                        j--;
+                for (int j = 0; j < n; j++) {
+                    if (pan[j][i] == 0) continue;
+                    for (int k = j + 1; k < n; k++) {
+                        if (pan[k][i] == 0) continue;
+                        if (pan[j][i] != pan[k][i]) break;
+                        if (pan[j][i] == pan[j][i]) {
+                            pan[j][i] *= 2;
+                            pan[k][i] = 0;
+                            j = k;
+                            break;
+                        }
                     }
                 }
-
-                for (int j = n - 1; j > 0; j--) {
-                    if (pan[i][j] == 0) {
-                        pan[i][j] = pan[i][j - 1];
-                        pan[i][j - 1] = 0;
-                    }
+                for (int j = 0; j < n; j++) {
+                    if (pan[j][i] == 0) continue;
+                    q.add(pan[j][i]);
+                    pan[j][i] = 0;
                 }
+                int size = q.size();
+                for (int j = 0; j < size; j++)
+                    pan[j][i] = q.poll();
             }
-        }
-        else if (direct == 3) {
+        } else if (direct == 3) {
             for (int i = 0; i < n; i++) {
-                for (int j = 0; j < n - 1; j++) {
-                    if (pan[j][i] == pan[j + 1][i]) {
-                        pan[j][i] += pan[j + 1][i];
-                        pan[j + 1][i] = 0;
-                        j++;
+                for (int j = n - 1; j >= 0; j--) {
+                    if (pan[i][j] == 0) continue;
+                    for (int k = j - 1; k >= 0; k--) {
+                        if (pan[i][k] == 0) continue;
+                        if (pan[i][j] != pan[i][k]) break;
+                        if (pan[i][j] == pan[i][k]) {
+                            pan[i][j] *= 2;
+                            pan[i][k] = 0;
+                            j = k;
+                            break;
+                        }
                     }
                 }
-
-                for (int j = 0; j < n - 1; j++) {
-                    if (pan[i][j] == 0) {
-                        pan[i][j] = pan[i][j + 1];
-                        pan[i][j + 1] = 0;
-                    }
+                for (int j = n - 1; j >= 0; j--) {
+                    if (pan[i][j] == 0) continue;
+                    q.add(pan[i][j]);
+                    pan[i][j] = 0;
                 }
-            }
-        }
-        else if (direct == 4) {
-            for (int i = 0; i < n; i++) {
-                for (int j = n - 1; j > 0; j--) {
-                    if (pan[j][i] == pan[j - 1][i]) {
-                        pan[j][i] += pan[j - 1][i];
-                        pan[j - 1][i] = 0;
-                        j--;
-                    }
-                }
-
-                for (int j = n - 1; j > 0; j--) {
-                    if (pan[i][j] == 0) {
-                        pan[i][j] = pan[i][j - 1];
-                        pan[i][j - 1] = 0;
-                    }
-                }
+                int size = q.size();
+                for (int j = 0; j < size; j++)
+                    pan[i][n - 1 - j] = q.poll();
             }
         }
     }
