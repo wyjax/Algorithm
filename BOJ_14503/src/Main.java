@@ -11,7 +11,7 @@ public class Main {
         int m = sc.nextInt();
         int[][] maps = new int[n][m];
         int x = sc.nextInt();
-        int y = sc.nextInt();g
+        int y = sc.nextInt();
         int d = sc.nextInt();
 
         for (int i = 0; i < n; i++) {
