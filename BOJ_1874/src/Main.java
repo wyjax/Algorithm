@@ -6,6 +6,7 @@ public class Main {
         Scanner sc = new Scanner(System.in);
 
         int n = sc.nextInt();
+
         int m = 0;
 
         Stack<Integer> stack = new Stack<>();
