@@ -9,6 +9,7 @@ public class Main {
         int []a = new int[n];
         int []ans = new int[n];
 
+
         String []tmp = br.readLine().split(" ");
 
         for (int i = 0; i < n; i++) {
