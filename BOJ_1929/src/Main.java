@@ -24,7 +24,6 @@ public class Main {
             if (!check[i])
                 bw.write(i + "\n");
         }
-
         bw.flush();
         bw.close();
     }
