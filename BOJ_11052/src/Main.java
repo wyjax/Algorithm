@@ -7,8 +7,9 @@ public class Main {
         int p[] = new int[n + 1];
         int dp[] = new int[n + 1];
 
-        for (int i = 1; i <= n; i++)
+        for (int i = 1; i <= n; i++) {
             p[i] = sc.nextInt();
+        }
 
         for (int i = 1; i <= n; i++) {
             for (int j = 1; j <= i; j++) {
