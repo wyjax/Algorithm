@@ -19,3 +19,4 @@ public class Main {
         System.out.println(d[n][0] + d[n][1]);
     }
 }
+
