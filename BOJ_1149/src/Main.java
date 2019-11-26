@@ -18,11 +18,13 @@ public class Main {
             a[i][2] = Integer.parseInt(s[2]);
         }
 
+        // 처음에는 [0][i]로 시작하게 된다.
         d[0][0] = a[0][0];
         d[0][1] = a[0][1];
         d[0][2] = a[0][2];
 
         for (int i = 1; i < n; i++) {
+            // 이전과의 집과는 다른 색으로 색칠
             d[i][0] = a[i][0] + Math.min(d[i - 1][1], d[i - 1][2]);
             d[i][1] = a[i][1] + Math.min(d[i - 1][0], d[i - 1][2]);
             d[i][2] = a[i][2] + Math.min(d[i - 1][0], d[i - 1][1]);
