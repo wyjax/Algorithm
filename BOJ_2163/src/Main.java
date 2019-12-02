@@ -14,6 +14,7 @@ public class Main {
             }
         }
 
+        //System.out.println(n * m - 1);
         System.out.println(d[n][m]);
     }
 }
