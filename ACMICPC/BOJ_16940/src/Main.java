@@ -53,6 +53,10 @@ public class Main {
         for (int i = 0; i < n; i++) {
             if (bfs_order.get(i) != b[i]) {
                 ok = false;
+<<<<<<< Updated upstream
+=======
+                break;
+>>>>>>> Stashed changes
             }
         }
         if (ok) {
