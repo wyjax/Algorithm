@@ -42,7 +42,7 @@ public class Main {
                     q.add(new Pair(nx, ny, p.k));
                 }
                 else if (p.k < k - 1 && a[nx][ny] == 1 && ans[nx][ny][p.k + 1] == 0) {
-                    ans[nx][ny][p.k + 1] = ans[p.x][p.y][p.k] + 1;
+                    ans[nx][ny][p.k + 1] = ans[p.x][p.y][p.k] + 1;˜
                     q.add(new Pair(nx, ny, p.k + 1));
                 }
             }
