@@ -20,11 +20,10 @@ public class Main {
 
         long left = 0;
         long right = 1000000000;
-        long mid = (left + right) / 2;
         long result = 0;
 
         while (left <= right) {
-            mid = (left + right) / 2;
+            long mid = (left + right) / 2;
             long ret = search(mid);
 
             if (ret >= m) {
@@ -35,7 +34,6 @@ public class Main {
             else if (ret < m)
                 right = mid - 1;
         }
-
         System.out.println(result);
     }
 
