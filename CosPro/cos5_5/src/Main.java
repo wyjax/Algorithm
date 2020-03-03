@@ -26,7 +26,7 @@ class Solution {
     public static void main(String[] args) {
         Solution sol = new Solution();
         int[] enemies1 = {1, 4, 37,4,43,34,56,5,3,2,2,4,5,3,2,3,45,5,4,3,3,6,1,2,3,5,56,3,2,2,54};
-        int[] armies1 = {3, 1,4,5,6,87,3,23,5,4,34,23,4};
+        int[] armies1 = {3, 1,4,5,6,87,3,23,5,4,34,23,4,};
         int ret1 = sol.solution(enemies1, armies1);
 
         // [실행] 버튼을 누르면 출력 값을 볼 수 있습니다.

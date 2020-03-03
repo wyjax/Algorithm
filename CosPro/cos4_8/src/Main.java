@@ -1,6 +1,7 @@
 // 다음과 같이 import를 사용할 수 있습니다.
 
 import java.util.ArrayList;
+import java.util.Arrays;
 
 class Solution {
     int[] count;
@@ -8,10 +9,11 @@ class Solution {
 
     public int solution(int[] card, int n) {
         // 여기에 코드를 작성해주세요.
-        count = new int[10];
+        count =new int[10];
         list = new ArrayList<>();
         for (int i = 0; i < card.length; i++)
             count[card[i]]++;
+        Arrays.sort(card);
         search(0, 0, card);
 
         for (int i = 0; i < list.size(); i++) {
@@ -23,6 +25,7 @@ class Solution {
 
     public void search(int cnt, int num, int[] card) {
         if (cnt == card.length) {
+            System.out.println(num);
             list.add(num);
             return;
         }
