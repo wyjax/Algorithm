@@ -1,70 +1,53 @@
-import java.util.Arrays;
 import java.util.Scanner;
 
-class Pair {
-    boolean first;
-    int cnt;
-
-    Pair(boolean first, int cnt) {
-        this.first = first;
-        this.cnt = cnt;
-    }
-}
-
 public class Main {
-    static void change(int[] a, int index) {
-        for (int i = index - 1; i <= index + 1; i++) {
-            if (0 <= i && i < a.length)
-                a[i] = 1 - a[i];
-        }
+    static int[] b;
+    static int n;
+
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        n = sc.nextInt();
+        int[] a = new int[n];
+        b = new int[n];
+
+        String s = sc.next();
+        for (int i = 0; i < n; i++)
+            a[i] = s.charAt(i);
+        s = sc.next();
+        for (int i = 0; i < n; i++)
+            b[i] = s.charAt(i);
+
+        int ans1 = go(a);
+        a[0] = 1 - a[0];
+        a[1] = 1 - a[1];
+        int ans2 = go(a);
+
+        if (ans1 != -1 && ans2 != -1)
+            Math.min(ans1, ans2 + 1);
+        else if (ans1 != -1)
+            System.out.println(ans1);
+        else if (ans2 != -1)
+            System.out.println(ans2 + 1);
+        else
+            System.out.println(-1);
     }
 
-    static Pair go(int[] a, int[] goal) {
-        int n = a.length;
-        int ans = 0;
+    public static int go(int[] a) {
+        int answer = 0;
+
         for (int i = 0; i < n - 1; i++) {
-            if (a[i] != goal[i]) {
-                change(a, i + 1);
-                ans += 1;
+            if (a[i] == b[i]) continue;
+            answer++;
+            for (int j = i; j < i + 2; j++) {
+                if (j < 0 || j >= n) continue;
+                a[j] = 1 - a[j];
             }
         }
-        boolean ok = true;
-        for (int i = 0; i < n; i++) {
-            if (a[i] != goal[i])
-                ok = false;
-        }
-        if (ok)
-            return new Pair(true, ans);
-        else
-            return new Pair(false, ans);
-    }
-
-    public static void main(String args[]) {
-        Scanner sc = new Scanner(System.in);
-        int n = sc.nextInt();
-        int[] a = new int[n];
-        int[] obj = new int[n];
-        String s1 = sc.next();
-        String s2 = sc.next();
 
         for (int i = 0; i < n; i++) {
-            a[i] = s1.charAt(i) - '0';
-            obj[i] = s2.charAt(i) - '0';
+            if (a[i] != b[i])
+                return -1;
         }
-
-        Pair p1 = go(Arrays.copyOf(a, a.length), obj);
-        change(a, 0);
-        Pair p2 = go(a, obj);
-
-        if (p2.first)
-            p2.cnt += 1;
-        if (p1.first && p2.first)
-            System.out.printf("%d\n", Math.min(p1.cnt, p2.cnt));
-        else if (p1.first)
-            System.out.printf("%d\n", p1.cnt);
-        else if (p2.first)
-            System.out.printf("%d\n", p2.cnt);
-        else
-            System.out.printf("-1\n");
+        return answer;
     }
 }

@@ -3,7 +3,7 @@ import java.util.Scanner;
 public class Main {
     public static void main(String[] args) {
         // 30의 배수는 각 자리의 수의 합이 30의 배수가 되어야 한다.
-        // 0의 개수가 1개 이상이어야 마지막자리에 0은 무조건 와야 한다.
+        // 0의 개수가 1개 이상이어야 하고 마지막자리에 0은 무조건 와야 한다.
 
         Scanner sc = new Scanner(System.in);
         int[] a = new int[10];
