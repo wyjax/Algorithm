@@ -6,6 +6,7 @@ import java.util.Arrays;
 public class Main {
     static int n, m;
     static int[] a, ans;
+    static StringBuilder answer = new StringBuilder();
 
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
@@ -21,22 +22,22 @@ public class Main {
         }
 
         Arrays.sort(a);
-        search(0, 0);
+        search(0);
+        System.out.print(answer.toString());
     }
 
-    public static void search(int cnt, int sel) {
+    public static void search(int cnt) {
         if (cnt == m) {
+            StringBuilder sb = new StringBuilder();
             for (int n : ans)
-                System.out.print(n + " ");
-            System.out.println();
+                sb.append(n + " ");
+            answer.append(sb.toString() + "\n");
             return;
         }
 
-        for (int i = sel; i < n; i++) {
+        for (int i = 0; i < n; i++) {
             ans[cnt] = a[i];
-            search(cnt + 1, i + 1);
+            search(cnt + 1);
         }
     }
 }
-
-// git commit -m "백준 15655번 N과 M(6) > 브루트포스 풀이" BOJ_15656/
