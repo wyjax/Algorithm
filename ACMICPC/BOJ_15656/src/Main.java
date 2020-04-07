@@ -22,11 +22,11 @@ public class Main {
         }
 
         Arrays.sort(a);
-        search(0);
+        search(0, 0);
         System.out.print(answer.toString());
     }
 
-    public static void search(int cnt) {
+    public static void search(int cnt, int idx) {
         if (cnt == m) {
             StringBuilder sb = new StringBuilder();
             for (int n : ans)
@@ -35,9 +35,9 @@ public class Main {
             return;
         }
 
-        for (int i = 0; i < n; i++) {
+        for (int i = idx; i < n; i++) {
             ans[cnt] = a[i];
-            search(cnt + 1);
+            search(cnt + 1, i);
         }
     }
 }
