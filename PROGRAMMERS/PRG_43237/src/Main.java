@@ -2,7 +2,6 @@ import java.util.Arrays;
 
 class Solution {
     public int solution(int[] budgets, int M) {
-        int budge = 0;
         int len = budgets.length;
         long[] d = new long[len];
         Arrays.sort(budgets);
@@ -10,21 +9,13 @@ class Solution {
         d[0] = budgets[0];
         for (int i = 1; i < len; i++)
             d[i] = budgets[i] + d[i - 1];
-        // 평균값
-        budge = budgets[len - 1];
+        int budge = budgets[len - 1];
 
         while (true) {
             int idx = search(budge, budgets);
-            long tmp;
+            long tmp = (budge * (len - idx)) + (idx > 0 ? d[idx - 1] : 0);
 
-            if (idx > 0)
-                tmp = d[idx - 1] + (long) (budge * (len - idx));
-            else
-                tmp = (budge * len);
-
-            if (tmp <= M) {
-                break;
-            }
+            if (tmp <= M) break;
             budge--;
         }
         return budge;
