@@ -17,4 +17,3 @@ public class Main {
         new Solution().reverseString();
     }
 }
-344. Reverse String

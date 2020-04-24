@@ -21,4 +21,3 @@ public class Main {
         System.out.println(new Solution().longestCommonPrefix(s));
     }
 }
-// Leetcode 14. Longest Common Prefix

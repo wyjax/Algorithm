@@ -36,15 +36,15 @@ class Solution {
 
 public class Main {
     public static void main(String[] args) {
-        TreeNode root = new TreeNode(1);
+        TreeNode root  = new TreeNode(1);
         TreeNode root1 = new TreeNode(2);
         TreeNode root2 = new TreeNode(3);
         TreeNode root3 = new TreeNode(4);
         TreeNode root4 = new TreeNode(5);
 
-        root.left = root1;
-        root1.left = root3;
-        root.right = root2;
+        root.left   = root1;
+        root1.left  = root3;
+        root.right  = root2;
         root2.right = root4;
 
         new Solution().levelOrderBottom(root);
