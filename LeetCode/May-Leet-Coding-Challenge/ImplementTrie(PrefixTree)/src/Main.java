@@ -1,58 +1,64 @@
 
 class Trie {
-    class Node{
-        char c;
-        Node[] arr;
-        boolean b;
+    private Node root;
 
-        Node(char c){
-            this.c = c;
-            this.arr = new Node[26];
-        }
-    }
-
-    Node root;
-
+    /** Initialize your data structure here. */
     public Trie() {
-        this.root = new Node('\0');
+        root = new Node(' ');
     }
 
     /** Inserts a word into the trie. */
     public void insert(String word) {
         Node node = root;
-        for(char c : word.toCharArray()){
-            Node temp = node.arr[c - 'a'];
-            if(temp == null){
-                temp = new Node(c);
-                node.arr[c - 'a'] = temp;
+
+        for (char c : word.toCharArray()) {
+            Node next = node.nodes[c - 'a'];
+
+            if (next == null) {
+                next = new Node(c);
+                node.nodes[c - 'a'] = next;
             }
-            node = temp;
+            node = next;
         }
-        node.b = true;
+        node.end = true;
     }
 
     /** Returns if the word is in the trie. */
     public boolean search(String word) {
         Node node = root;
-        for(char c : word.toCharArray()){
-            node = node.arr[c - 'a'];
-            if(node == null){
+
+        for (char c : word.toCharArray()) {
+            node = node.nodes[c - 'a'];
+
+            if (node == null) {
                 return false;
             }
         }
-        return node.b;
+        return node.end;
     }
 
     /** Returns if there is any word in the trie that starts with the given prefix. */
     public boolean startsWith(String prefix) {
         Node node = root;
-        for(char c : prefix.toCharArray()){
-            node = node.arr[c - 'a'];
-            if(node == null){
+
+        for (char c : prefix.toCharArray()) {
+            node = node.nodes[c - 'a'];
+            if (node == null) {
                 return false;
             }
         }
         return true;
+    }
+
+    private class Node {
+        char ch;
+        Node[] nodes;
+        boolean end;
+
+        public Node(char ch) {
+            this.ch = ch;
+            this.nodes = new Node[26];
+        }
     }
 }
 
