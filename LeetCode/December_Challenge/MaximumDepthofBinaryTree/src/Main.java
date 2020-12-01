@@ -1,5 +1,3 @@
-import java.util.Optional;
-
 class TreeNode {
     int val;
     TreeNode left;
@@ -25,15 +23,10 @@ class Solution {
             return 0;
         }
 
-        return Math.max(recursive(root.left, 1), recursive(root.right, 1));
-    }
+        int leftMaxDepth = maxDepth(root.left);
+        int rightMaxDepth = maxDepth(root.right);
 
-    public int recursive(TreeNode node, int depth) {
-        if (node == null) {
-            return depth;
-        }
-
-        return Math.max(recursive(node.left, depth + 1), recursive(node.right, depth + 1));
+        return (Math.max(leftMaxDepth, rightMaxDepth) + 1);
     }
 }
 
