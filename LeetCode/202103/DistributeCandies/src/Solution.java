@@ -15,6 +15,11 @@ class Solution {
         }
         /*
             결과값은 사탕개수 / 2와 종류수 중에 작은 값이 답이다.
+
+            206 / 206 test cases passed.
+            Status: Accepted
+            Runtime: 21 ms
+            Memory Usage: 40.9 MB
          */
 
         return Math.min(maximumEat, candySet.size());
